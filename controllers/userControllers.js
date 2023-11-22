@@ -30,9 +30,12 @@ export const registerUser = asyncHandler(async (req, res) => {
     // confirming the user created by sending data in json to view in postman
     if (user) {
       generateToken(res, user._id);
-      res
-        .status(201)
-        .json({ _id: user._id, name: user.name, email: user.email });
+      res.status(201).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        message: "Registration Succesful",
+      });
     } else {
       res.status(400);
       throw new Error(`Invalid User Data`);
@@ -55,9 +58,8 @@ export const authUser = asyncHandler(async (req, res) => {
     if (isPasswordValid) {
       generateToken(res, existingUser._id);
       res.status(200).json({
-        _id: existingUser._id,
-        name: existingUser.name,
-        email: existingUser.email,
+        existingUser,
+        message: `User Logged In Successfully`,
       });
     } else {
       res.status(401);
@@ -77,7 +79,7 @@ export const logOutUser = asyncHandler(async (req, res) => {
     httpOnly: true,
     expires: new Date(0),
   });
-  res.status(200).json({ message: `User Logged Out` });
+  res.status(200).json({ message: `User Logged Out Successfully` });
 });
 
 // FORGOT PASSWORD
