@@ -96,7 +96,7 @@ export const forgotPassword = asyncHandler(async (req, res) => {
       { $set: { resetPasswordToken: resetToken } }
     );
     //send token via email
-    const url = `${process.env.FRONTEND_URL}/resetpassword/:${resetToken}`;
+    const url = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
 
     const text = `Click on this link to reset your password, ${url} . if you have not requested then please ignore `;
 
