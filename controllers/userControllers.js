@@ -96,14 +96,14 @@ export const forgotPassword = asyncHandler(async (req, res) => {
       { $set: { resetPasswordToken: resetToken } }
     );
     //send token via email
-    const url = `${process.env.FRONTEND_URL}/api/users/resetpassword/${resetToken}`;
+    const url = `${process.env.FRONTEND_URL}/resetpassword/:${resetToken}`;
 
     const text = `Click on this link to reset your password, ${url} . if you have not requested then please ignore `;
 
     await sendMail(checkUser.email, "Reset Password", text);
 
     res.status(200).json({
-      message: `Reset token has been sent to ${checkUser.email}`,
+      message: `Reset password link has been sent to your ${checkUser.email}`,
     });
   } else {
     res.status(401);
@@ -115,7 +115,7 @@ export const forgotPassword = asyncHandler(async (req, res) => {
 //route: PUT /api/users/resetpassword/:token
 export const resetPassword = asyncHandler(async (req, res) => {
   //getting token from params
-  const { token } = req.params;
+  const { token } = req.body;
   // hashing the user password
   const hashedPassword = await generateHashedPassword(req.body.password);
   // finding & comparing the token string
@@ -127,7 +127,7 @@ export const resetPassword = asyncHandler(async (req, res) => {
     user.resetPasswordToken = "";
     await user.save();
     res.status(200).json({
-      message: "User Exists! , token Fetched , Password saved succesfully",
+      message: "Password Resetted Successfully",
     });
   } else {
     res.status(400);
