@@ -17,10 +17,9 @@ const schema = new mongoose.Schema(
       type: String,
       required: [true, "Please enter your password"],
       minlength: [6, "Password must be atleast 6 characters"],
-      select: false, // don't show password in json
+      // select: false, // don't show password in json
     },
-    ResetPasswordToken: String,
-    ResetPasswordExpires: String,
+    resetPasswordToken: String,
   },
   {
     timestamps: true,
