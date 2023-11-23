@@ -116,8 +116,8 @@ export const forgotPassword = asyncHandler(async (req, res) => {
 // RESET PASSWORD
 //route: PUT /api/users/resetpassword/:token
 export const resetPassword = asyncHandler(async (req, res) => {
-  //getting token from params
-  const { token } = req.params;
+  //getting token from body
+  const { token } = req.body;
   // hashing the user password
   const hashedPassword = await generateHashedPassword(req.body.password);
   // finding & comparing the token string
