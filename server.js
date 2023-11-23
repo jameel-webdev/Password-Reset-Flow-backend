@@ -8,7 +8,7 @@ config({
 import userRouters from "./routes/userRouters.js";
 import cookieParser from "cookie-parser";
 import connectDb from "./config/db.js";
-import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
+import { errorHandler } from "./middlewares/errorMiddleware.js";
 
 const port = process.env.PORT || 5000;
 // DATABASE
@@ -27,7 +27,6 @@ app.use(cookieParser());
 app.use("/api/users", userRouters);
 
 //CUSTOM MIDDLEWARE
-app.use(notFound);
 app.use(errorHandler);
 
 // LISTENING ON
