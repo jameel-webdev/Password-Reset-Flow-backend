@@ -1,5 +1,6 @@
 // PACKAGES
 import express from "express";
+import cors from "cors";
 import { config } from "dotenv";
 config({
   path: "./config/config.env", // instead of just config()-if path provided we dont need to stop and restart the server once any changes made in .env file
@@ -19,6 +20,7 @@ const app = express();
 // MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.use(cookieParser());
 
 // ROUTES
