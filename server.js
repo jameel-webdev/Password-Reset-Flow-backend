@@ -31,7 +31,7 @@ app.use(errorHandler);
 
 // LISTENING ON
 app.get("/", (req, res) => {
-  res.json({ message: `Welocme to Password Reset Flow Server Page` });
+  res.json({ message: `Welcome to Password Reset Flow Server Page` });
 });
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
