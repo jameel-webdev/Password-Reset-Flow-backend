@@ -98,7 +98,7 @@ export const forgotPassword = asyncHandler(async (req, res) => {
       { $set: { resetPasswordToken: resetToken } }
     );
     //send token via email
-    const url = `${process.env.FRONTEND_URL}/resetpassword/:${resetToken}`;
+    const url = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
 
     const text = `Click on this link to reset your password, ${url} . if you have not requested then please ignore `;
 
@@ -117,7 +117,7 @@ export const forgotPassword = asyncHandler(async (req, res) => {
 //route: PUT /api/users/resetpassword/:token
 export const resetPassword = asyncHandler(async (req, res) => {
   //getting token from params
-  const { token } = req.body;
+  const { token } = req.params;
   // hashing the user password
   const hashedPassword = await generateHashedPassword(req.body.password);
   // finding & comparing the token string
