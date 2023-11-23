@@ -29,6 +29,9 @@ app.use(notFound);
 app.use(errorHandler);
 
 // LISTENING ON
+app.get("/", (req, res) => {
+  res.json(`Welocme to Password Reset Flow Server Page`);
+});
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
